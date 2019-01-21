@@ -1,9 +1,9 @@
 workflow "New workflow" {
-  resolves = ["My First Test Action"]
   on = "issue_comment"
+  resolves = ["printenv"]
 }
 
-action "My First Test Action" {
-  uses = "./test"
+action "printenv" {
+  uses = "kouki-dan/actions/printenv@master"
   args = "Hello"
 }
