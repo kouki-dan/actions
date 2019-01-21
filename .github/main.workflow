@@ -1,6 +1,6 @@
 workflow "New workflow" {
-  on = "push"
   resolves = ["My First Test Action"]
+  on = "issue_comment"
 }
 
 action "My First Test Action" {
