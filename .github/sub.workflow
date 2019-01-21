@@ -4,6 +4,6 @@ workflow "New workflow" {
 }
 
 action "My First Test Action" {
-  uses = "./test"
+  uses = "kouki-dan/actions/printenv@master"
   args = "Hello"
 }
