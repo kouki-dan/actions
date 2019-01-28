@@ -1,9 +1,9 @@
 workflow "New workflow" {
   on = "issue_comment"
-  resolves = ["printenv"]
+  resolves = ["show-event"]
 }
 
-action "printenv" {
-  uses = "kouki-dan/actions/ls@master"
+action "show-event" {
+  uses = "kouki-dan/actions/show-event@master"
   args = "Hello"
 }
