@@ -1,4 +1,4 @@
-workflow "New workflow" {
+workflow "Issue comment" {
   resolves = ["My First Test Action"]
   on = "issue_comment"
 }
