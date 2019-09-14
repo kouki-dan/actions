@@ -9,6 +9,7 @@ jobs:
     
     steps:
     - uses: actions/checkout@v1
+    - if: github.event.action.startsWith('deploy')
     - name: test
       run: |
         echo "OK"
