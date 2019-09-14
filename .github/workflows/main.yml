@@ -1,0 +1,14 @@
+name: Test
+
+on: [repository_dispatch]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v1
+    - name: test
+      run: |
+        echo "OK"
