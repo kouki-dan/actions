@@ -9,8 +9,8 @@ jobs:
     
     steps:
     - uses: actions/checkout@v1
-    - if: github.event.action.startsWith('deploy')
     - name: test
+      if: github.event.action.startsWith('deploy')
       run: |
         echo "OK"
         cat $GITHUB_EVENT_PATH
