@@ -14,3 +14,8 @@ jobs:
       run: |
         echo "OK"
         cat $GITHUB_EVENT_PATH
+    - name: test2
+      if: github.event.action == 'deploy2'
+      run: |
+        echo "OK2"
+        cat $GITHUB_EVENT_PATH
