@@ -13,7 +13,6 @@ jobs:
     - name: Run a one-line script
       run: |
         echo "deploy" >> README.md
-        git commit -m "Deploy"
     - name: Commit files
       run: |
         git config --local user.email "action@github.com"
