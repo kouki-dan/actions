@@ -28,9 +28,10 @@ jobs:
       with:
         github-token: ${{secrets.GITHUB_TOKEN}}
         script: |
+          console.log(context)
           github.repos.createDeploymentStatus({
             ...context.repo,
-            deployment_id: context.id,
-            state: "${{ job.status }}"
+            deployment_id: context.payload.deployment.id,
+            state: "${{ job.status }}".toLowerCase()
           })
 
