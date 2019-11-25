@@ -22,3 +22,15 @@ jobs:
       uses: ad-m/github-push-action@master
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
+    - name: update deploy status
+      if: always()
+      uses: actions/github-script@0.3.0
+      with:
+        github-token: ${{secrets.GITHUB_TOKEN}}
+        script: |
+          github.repos.createDeploymentStatus({
+            ...context.repo,
+            deployment_id: context.id,
+            state: "${{ job.status }}"
+          })
+
