@@ -1,0 +1,37 @@
+name: Deploy With Soem Push
+
+on: 
+  deployment
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v1
+    - name: Run a one-line script
+      run: |
+        echo "deploy" >> README.md
+    - name: Commit files
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git commit -m "Add changes" -a
+    - name: Push changes
+      uses: ad-m/github-push-action@master
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        branch: ${{ github.event.deployment.ref }}
+    - name: update deploy status
+      if: always()
+      uses: actions/github-script@0.3.0
+      with:
+        github-token: ${{secrets.GITHUB_TOKEN}}
+        script: |
+          console.log(context)
+          github.repos.createDeploymentStatus({
+            ...context.repo,
+            deployment_id: context.payload.deployment.id,
+            state: "${{ job.status }}".toLowerCase()
+          })
